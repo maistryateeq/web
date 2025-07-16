@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammed Ateeq | Data Scientist Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(to right, #002b5b, #005b96);
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      position: relative;
+    }
+
+    header img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 5px solid white;
+      margin-bottom: 1rem;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      color: #002b5b;
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .projects img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .social a {
+      display: inline-block;
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #005b96;
+    }
+
+    .social a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      background: #002b5b;
+      color: white;
+      padding: 1rem;
+    }
+
+    button {
+      background: #005b96;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #003f73;
+    }
+  </style>
+</head>
+
+<body>
+  <header data-aos="fade-down">
+    <img src="https://avatars.githubusercontent.com/u/106227307?v=4" alt="Mohammed Ateeq">
+    <h1>Mohammed Ateeq</h1>
+    <p>Data Scientist | AI & ML Enthusiast | Python | SQL | Power BI</p>
+  </header>
+
+  <section class="about card" data-aos="fade-up">
+    <h2>About Me / Objective</h2>
+    <p>I am a passionate Data Scientist with a strong foundation in Python, Machine Learning, Power BI, and SQL. I love turning data into actionable insights that solve real-world problems. I'm actively looking for a role where I can contribute to impactful data-driven solutions and grow alongside a forward-thinking team.</p>
+  </section>
+
+  <section class="education card" data-aos="fade-up">
+    <h2>Education</h2>
+    <p><strong>Master of Technology (Artificial Intelligence & Data Science)</strong><br />VIT Bhopal University | 2023 - 2025</p>
+    <p><strong>Bachelor of Computer Science</strong><br />[Your University] | [Year]</p>
+  </section>
+
+  <section class="projects card" data-aos="fade-up">
+    <h2>Projects</h2>
+    <div>
+      <p><strong>Customer Churn Prediction:</strong> Built a machine learning model to predict customer attrition using logistic regression and random forest. Deployed using Streamlit.</p>
+      <img src="https://i.imgur.com/0dJHHTB.png" alt="Customer Churn Project">
+    </div>
+    <div>
+      <p><strong>Power BI Sales Dashboard:</strong> Created an interactive Power BI dashboard for a retail chain to visualize sales performance across regions and time.</p>
+      <img src="https://i.imgur.com/cdkk4TR.png" alt="Sales Dashboard">
+    </div>
+    <div>
+      <p><strong>Resume Parser using NLP:</strong> Developed a tool to extract structured information from resumes using SpaCy and Regex.</p>
+      <img src="https://i.imgur.com/ndXq5q1.png" alt="Resume Parser">
+    </div>
+  </section>
+
+  <section class="hobbies card" data-aos="fade-up">
+    <h2>Hobbies</h2>
+    <ul>
+      <li>Creating Tech YouTube Tutorials</li>
+      <li>Exploring AI Business Ideas</li>
+      <li>Public Speaking & Career Guidance</li>
+      <li>Chess & Problem Solving</li>
+    </ul>
+  </section>
+
+  <section class="social card" data-aos="fade-up">
+    <h2>Social Media</h2>
+    <p>
+      <a href="https://github.com/mohammedateeq10" target="_blank">GitHub</a>
+      <a href="https://www.youtube.com/@Ateeq10" target="_blank">YouTube</a>
+      <a href="https://www.linkedin.com/in/mohammedateeq10" target="_blank">LinkedIn</a>
+      <a href="mailto:mohammedateeq10@gmail.com">Email</a>
+    </p>
+  </section>
+
+  <section class="contact card" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>If you’d like to connect, collaborate, or hire me, feel free to drop a message via <a href="mailto:mohammedateeq10@gmail.com">email</a> or reach me on LinkedIn.</p>
+    <button onclick="showThanks()">Say Hello 👋</button>
+    <p id="thankYouMsg" style="color: green; font-weight: bold; display:none; margin-top: 1rem;">Thank you! I’ll get back to you shortly.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mohammed Ateeq. All Rights Reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    function showThanks() {
+      document.getElementById('thankYouMsg').style.display = 'block';
+    }
+  </script>
+</body>
+
+</html>
