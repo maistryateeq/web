@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Ateeq - Data Scientist Portfolio</title>
+    <!-- Favicon -->
+    <link rel="icon" href="https://placehold.co/32x32/3b82f6/ffffff?text=DS" type="image/png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Define CSS Variables for Light Mode */
+        :root {
+            --color-bg-primary: #f0f4f8; /* Lighter blue-gray */
+            --color-text-primary: #334155; /* Slate 700 */
+            --color-text-heading: #1a202c; /* Darker text */
+            --color-header-bg: #ffffff;
+            --color-card-bg: #ffffff;
+            --color-card-border: #e2e8f0;
+            --color-skill-item-bg: #e0f2fe; /* Light blue */
+            --color-skill-item-text: #0c4a6e; /* Darker blue text */
+            --color-skill-item-hover-bg: #bfdbfe; /* Even lighter blue on hover */
+            --color-section-bg-alt: #f8fafc; /* For gray-100 sections */
+            --color-nav-link: #475569; /* slate-600 */
+            --color-nav-link-hover: #3b82f6; /* blue-500 */
+            --color-social-icon: #64748b; /* slate-500 */
+            --color-social-icon-hover: #3b82f6; /* blue-500 */
+            --color-footer-bg: #1e293b; /* slate-800 */
+            --color-footer-text: #94a3b8; /* slate-400 */
+            --color-contact-form-bg: #f8fafc; /* gray-50 */
+            --color-input-border: #cbd5e1; /* gray-300 */
+            --color-input-focus-ring: #3b82f6; /* blue-500 */
+            --color-hero-gradient-from: #3b82f6; /* blue-600 */
+            --color-hero-gradient-to: #4f46e5; /* indigo-800 */
+            --color-hero-text-highlight: #facc15; /* yellow-300 */
+            --color-button-primary: #3b82f6; /* blue-500 */
+            --color-button-primary-hover: #2563eb; /* blue-600 */
+            --color-resume-button-bg: #10b981; /* Emerald 500 */
+            --color-resume-button-hover-bg: #059669; /* Emerald 600 */
+            --color-pattern-light: rgba(0, 0, 0, 0.03); /* Light pattern color */
+        }
+
+        /* Define CSS Variables for Dark Mode */
+        body.dark-mode {
+            --color-bg-primary: #1a202c; /* Dark background */
+            --color-text-primary: #cbd5e1; /* Light text */
+            --color-text-heading: #f8fafc; /* Lighter heading */
+            --color-header-bg: #2d3748; /* Darker header */
+            --color-card-bg: #2d3748; /* Darker cards */
+            --color-card-border: #4a5568;
+            --color-skill-item-bg: #4a5568;
+            --color-skill-item-text: #e2e8f0;
+            --color-skill-item-hover-bg: #64748b;
+            --color-section-bg-alt: #2d3748; /* For gray-100 sections in dark mode */
+            --color-nav-link: #a0aec0; /* gray-400 */
+            --color-nav-link-hover: #63b3ed; /* blue-300 */
+            --color-social-icon: #a0aec0; /* gray-400 */
+            --color-social-icon-hover: #63b3ed; /* blue-300 */
+            --color-footer-bg: #0f172a; /* slate-900 */
+            --color-footer-text: #64748b; /* slate-500 */
+            --color-contact-form-bg: #2d3748; /* dark gray */
+            --color-input-border: #4a5568; /* dark gray border */
+            --color-input-focus-ring: #63b3ed; /* blue-300 */
+            --color-hero-gradient-from: #2a4365; /* Darker blue */
+            --color-hero-gradient-to: #1a202c; /* Even darker blue */
+            --color-hero-text-highlight: #fcd34d; /* Darker yellow */
+            --color-button-primary: #63b3ed; /* blue-300 */
+            --color-button-primary-hover: #4299e1; /* blue-400 */
+            --color-resume-button-bg: #065f46; /* Emerald 800 */
+            --color-resume-button-hover-bg: #047857; /* Emerald 700 */
+            --color-pattern-dark: rgba(255, 255, 255, 0.03); /* Dark pattern color */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Subtle background pattern */
+            background-image: radial-gradient(var(--color-pattern-light) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        body.dark-mode {
+            background-image: radial-gradient(var(--color-pattern-dark) 1px, transparent 1px);
+        }
+
+        .section-heading {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+            font-size: 3rem; /* text-5xl */
+            font-weight: 800; /* font-extrabold */
+            color: var(--color-text-heading);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            /* Removed initial opacity and transform */
+            animation: none; /* Reset animation for JS control */
+            transition: color 0.3s ease; /* Smooth color transition for dark mode */
+        }
+        .section-heading.is-visible {
+            opacity: 1; /* Ensure visible */
+            transform: translateX(0); /* Ensure correct position */
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 70%; /* Wider underline */
+            height: 5px; /* Thicker underline */
+            background-color: var(--color-nav-link-hover); /* Blue 500 */
+            border-radius: 9999px; /* rounded-full */
+            transition: background-color 0.3s ease; /* Smooth color transition for dark mode */
+        }
+        .nav-link {
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            padding-bottom: 0.25rem;
+            color: var(--color-nav-link);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-nav-link-hover); /* Blue 500 */
+            transition: width 0.3s ease-in-out, background-color 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .project-card, .education-card, .hobby-card, .skill-card, .experience-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Ease-in-out */
+            border-radius: 0.75rem; /* More rounded */
+            overflow: hidden;
+            /* Removed initial opacity and transform */
+            animation: none; /* Reset animation for JS control */
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-card-border);
+            color: var(--color-text-primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Subtle initial shadow */
+        }
+        .project-card.is-visible, .education-card.is-visible, .hobby-card.is-visible, .skill-card.is-visible, .experience-card.is-visible {
+            opacity: 1; /* Ensure visible */
+            transform: translateY(0); /* Ensure correct position */
+            animation: fadeInUpStagger 0.6s ease-out forwards var(--stagger-delay);
+        }
+        .project-card:hover, .education-card:hover, .hobby-card:hover, .skill-card:hover, .experience-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+        .social-icon {
+            transition: all 0.3s ease-in-out;
+            color: var(--color-social-icon);
+        }
+        .social-icon:hover {
+            transform: scale(1.2);
+            color: var(--color-social-icon-hover);
+        }
+        .btn-primary {
+            background-color: var(--color-button-primary);
+            color: white;
+            padding: 0.85rem 2rem; /* Larger padding */
+            border-radius: 0.75rem; /* More rounded */
+            font-weight: 700; /* Bolder */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-primary:hover {
+            background-color: var(--color-button-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        .btn-resume {
+            background-color: var(--color-resume-button-bg);
+            color: white;
+            padding: 0.85rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-resume:hover {
+            background-color: var(--color-resume-button-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Custom Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInUpStagger {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero section elements will now get opacity/transform from their animation classes */
+        .hero-text-animate, .hero-image-animate, .hero-button-animate {
+            /* No initial opacity/transform here, they will be animated from 0/offset to 1/0 */
+        }
+        .hero-text-animate.is-visible { animation: fadeInUp 0.8s ease-out forwards var(--animation-delay); }
+        .hero-image-animate.is-visible { animation: fadeInRight 0.8s ease-out forwards var(--animation-delay); }
+        .hero-button-animate.is-visible { animation: zoomIn 0.8s ease-out forwards var(--animation-delay); }
+
+
+        .skill-item {
+            background-color: var(--color-skill-item-bg);
+            color: var(--color-skill-item-text);
+            padding: 0.6rem 1.2rem;
+            border-radius: 9999px; /* Full rounded */
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+        .skill-item:hover {
+            background-color: var(--color-skill-item-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Background colors for sections */
+        #skills, #education, #hobbies, #contact {
+            background-color: var(--color-bg-primary);
+            transition: background-color 0.3s ease;
+        }
+        #experience, #projects, #social-media {
+            background-color: var(--color-section-bg-alt);
+            transition: background-color 0.3s ease;
+        }
+        .bg-gradient-to-br {
+            background-image: linear-gradient(to bottom right, var(--color-hero-gradient-from), var(--color-hero-gradient-to));
+            transition: background-image 0.3s ease;
+        }
+        .text-yellow-300 {
+            color: var(--color-hero-text-highlight);
+            transition: color 0.3s ease;
+        }
+        .bg-white {
+            background-color: var(--color-header-bg);
+            transition: background-color 0.3s ease;
+        }
+        .text-gray-900 {
+            color: var(--color-text-heading);
+            transition: color 0.3s ease;
+        }
+        .text-gray-700 {
+            color: var(--color-nav-link);
+            transition: color 0.3s ease;
+        }
+        .bg-gray-800, .bg-gray-900 {
+            background-color: var(--color-footer-bg);
+            transition: background-color 0.3s ease;
+        }
+        .text-gray-400 {
+            color: var(--color-footer-text);
+            transition: color 0.3s ease;
+        }
+        .text-gray-600 {
+            color: var(--color-social-icon);
+            transition: color 0.3s ease;
+        }
+        .text-gray-50 {
+            background-color: var(--color-contact-form-bg);
+            transition: background-color 0.3s ease;
+        }
+        .border-gray-200 {
+            border-color: var(--color-card-border);
+            transition: border-color 0.3s ease;
+        }
+        .border-gray-300 {
+            border-color: var(--color-input-border);
+            transition: border-color 0.3s ease;
+        }
+        .focus\:border-blue-500:focus {
+            border-color: var(--color-input-focus-ring);
+        }
+        .focus\:ring-blue-500:focus {
+            --tw-ring-color: var(--color-input-focus-ring);
+        }
+        .text-blue-500 {
+            color: var(--color-nav-link-hover); /* Using nav-link-hover for consistency with accent color */
+            transition: color 0.3s ease;
+        }
+        .text-blue-600 {
+            color: var(--color-nav-link-hover);
+            transition: color 0.3s ease;
+        }
+        .hover\:text-blue-600:hover {
+            color: var(--color-nav-link-hover);
+        }
+        .hover\:text-blue-800:hover {
+            color: var(--color-button-primary-hover);
+        }
+        .shadow-lg {
+            box-shadow: var(--tw-shadow-lg);
+        }
+        .shadow-2xl {
+            box-shadow: var(--tw-shadow-2xl);
+        }
+        .profile-image-container {
+            width: 24rem; /* md:w-96 */
+            height: 30rem; /* Adjusted height for 760x960 aspect ratio (760/960 = 0.79 -> 24 * 0.79 = 19rem, but for 960/760 = 1.26 -> 24 * 1.26 = 30.24rem) */
+            /* Using fixed sizes for the placeholder to maintain aspect ratio, will be responsive via object-cover */
+            max-width: 100%;
+            max-height: 100%;
+            overflow: hidden; /* Ensure image doesn't spill */
+            border-radius: 0.75rem; /* Rounded corners for the rectangular image */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* Stronger shadow */
+            transition: transform 0.5s ease;
+        }
+        .profile-image-container:hover {
+            transform: scale(1.03);
+        }
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image covers the container, cropping if necessary */
+            object-position: center top; /* Focus on the top part of the image */
+        }
+        body.dark-mode .profile-image-container {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+
+        /* Dark mode toggle button styling */
+        #theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--color-text-primary);
+            transition: color 0.3s ease, transform 0.2s ease;
+            outline: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+        #theme-toggle:hover {
+            transform: scale(1.1);
+            color: var(--color-nav-link-hover);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-lg py-4 fixed top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-3xl font-extrabold text-gray-900 tracking-tight">Mohammed Ateeq</a>
+            <ul class="hidden md:flex space-x-10">
+                <li><a href="#about" class="nav-link font-semibold">About</a></li>
+                <li><a href="#skills" class="nav-link font-semibold">Skills</a></li>
+                <li><a href="#experience" class="nav-link font-semibold">Experience</a></li>
+                <li><a href="#education" class="nav-link font-semibold">Education</a></li>
+                <li><a href="#projects" class="nav-link font-semibold">Projects</a></li>
+                <li><a href="#hobbies" class="nav-link font-semibold">Hobbies</a></li>
+                <li><a href="#contact" class="nav-link font-semibold">Contact</a></li>
+            </ul>
+            <div class="flex items-center space-x-4">
+                <!-- Dark/Light Mode Toggle -->
+                <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
+                    <i class="fas fa-bars text-3xl"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 shadow-md">
+            <ul class="flex flex-col items-center space-y-4">
+                <li><a href="#about" class="nav-link font-semibold block py-2">About</a></li>
+                <li><a href="#skills" class="nav-link font-semibold block py-2">Skills</a></li>
+                <li><a href="#experience" class="nav-link font-semibold block py-2">Experience</a></li>
+                <li><a href="#education" class="nav-link font-semibold block py-2">Education</a></li>
+                <li><a href="#projects" class="nav-link font-semibold block py-2">Projects</a></li>
+                <li><a href="#hobbies" class="nav-link font-semibold block py-2">Hobbies</a></li>
+                <li><a href="#contact" class="nav-link font-semibold block py-2">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <!-- Hero Section (About/Objective) -->
+        <section id="about" class="bg-gradient-to-br from-blue-600 to-indigo-800 text-white py-24 md:py-40 rounded-b-3xl shadow-2xl overflow-hidden">
+            <div class="container mx-auto px-8 flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+                    <h1 class="text-6xl md:text-7xl font-extrabold leading-tight mb-6 hero-text-animate" style="--animation-delay: 0.1s;">Hello, I'm <span class="text-yellow-300">Mohammed Ateeq</span></h1>
+                    <p class="text-3xl md:text-4xl font-light mb-8 hero-text-animate" style="--animation-delay: 0.3s;">A Data Scientist with a Passion for Innovation</p>
+                    <p class="text-xl md:text-2xl mb-10 leading-relaxed hero-text-animate" style="--animation-delay: 0.5s;">
+                        Leveraging advanced machine learning, statistical modeling, and robust data engineering, I transform complex datasets into actionable insights that drive strategic decisions and foster growth. My objective is to build intelligent systems that solve real-world problems.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 hero-button-animate" style="--animation-delay: 0.7s;">
+                        <a href="#projects" class="btn-primary inline-flex items-center justify-center">Explore My Work <i class="fas fa-arrow-right ml-3"></i></a>
+                        <a href="your_resume.pdf" download class="btn-resume inline-flex items-center justify-center">Download Resume <i class="fas fa-download ml-3"></i></a>
+                    </div>
+                </div>
+                <div class="md:w-1/3 flex justify-center hero-image-animate" style="--animation-delay: 0.9s;">
+                    <!-- Placeholder image for your profile picture -->
+                    <div class="profile-image-container">
+                        <img src="D:\Q2166\DRIVE  D\NA SC\DSC_0090- c1.jpg" alt="Mohammed Ateeq Profile Photo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 md:py-32">
+            <div class="container mx-auto px-8">
+                <h2 class="section-heading text-center mb-16">My Expertise</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 skill-cards-container">
+                    <!-- Skill Category 1 -->
+                    <div class="skill-card p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-code text-blue-500 mr-3"></i> Programming & Tools</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-item">Python</span>
+                            <span class="skill-item">R</span>
+                            <span class="skill-item">SQL</span>
+                            <span class="skill-item">Git</span>
+                            <span class="skill-item">Docker</span>
+                            <span class="skill-item">Jupyter</span>
+                            <span class="skill-item">VS Code</span>
+                        </div>
+                    </div>
+                    <!-- Skill Category 2 -->
+                    <div class="skill-card p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-brain text-blue-500 mr-3"></i> Machine Learning</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-item">Scikit-learn</span>
+                            <span class="skill-item">TensorFlow</span>
+                            <span class="skill-item">PyTorch</span>
+                            <span class="skill-item">Keras</span>
+                            <span class="skill-item">XGBoost</span>
+                            <span class="skill-item">Clustering</span>
+                            <span class="skill-item">Regression</span>
+                            <span class="skill-item">Classification</span>
+                        </div>
+                    </div>
+                    <!-- Skill Category 3 -->
+                    <div class="skill-card p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-chart-line text-blue-500 mr-3"></i> Data Analysis & Viz</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-item">Pandas</span>
+                            <span class="skill-item">NumPy</span>
+                            <span class="skill-item">Matplotlib</span>
+                            <span class="skill-item">Seaborn</span>
+                            <span class="skill-item">Plotly</span>
+                            <span class="skill-item">Tableau</span>
+                            <span class="skill-item">Power BI</span>
+                        </div>
+                    </div>
+                    <!-- Skill Category 4 -->
+                    <div class="skill-card p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-database text-blue-500 mr-3"></i> Big Data & Cloud</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-item">Spark</span>
+                            <span class="skill-item">Hadoop</span>
+                            <span class="skill-item">AWS Sagemaker</span>
+                            <span class="skill-item">Azure ML</span>
+                            <span class="skill-item">Google Cloud AI</span>
+                            <span class="skill-item">Snowflake</span>
+                        </div>
+                    </div>
+                    <!-- Skill Category 5 -->
+                    <div class="skill-card p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-language text-blue-500 mr-3"></i> NLP & Deep Learning</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-item">NLP</span>
+                            <span class="skill-item">Computer Vision</span>
+                            <span class="skill-item">Transformers</span>
+                            <span class="skill-item">RNNs/CNNs</span>
+                            <span class="skill-item">BERT</span>
+                            <span class="skill-item">GPT Models</span>
+                        </div>
+                    </div>
+                    <!-- Skill Category 6 -->
+                    <div class="skill-card p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-lightbulb text-blue-500 mr-3"></i> Methodologies</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-item">A/B Testing</span>
+                            <span class="skill-item">Statistical Modeling</span>
+                            <span class="skill-item">Experiment Design</span>
+                            <span class="skill-item">Model Deployment</span>
+                            <span class="skill-item">MLOps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 md:py-32">
+            <div class="container mx-auto px-8">
+                <h2 class="section-heading text-center mb-16">Professional Experience</h2>
+                <div class="grid grid-cols-1 gap-12 experience-cards-container">
+                    <!-- Experience Item 1 -->
+                    <div class="experience-card p-10 rounded-xl shadow-lg flex flex-col md:flex-row items-start md:items-center">
+                        <div class="md:w-1/4 text-center md:text-left mb-6 md:mb-0 md:pr-8">
+                            <h3 class="text-2xl font-bold text-gray-900">Senior Data Scientist</h3>
+                            <p class="text-lg text-gray-600">Tech Innovators Inc.</p>
+                            <p class="text-md text-gray-500">Jan 2022 – Present</p>
+                        </div>
+                        <div class="md:w-3/4">
+                            <ul class="list-disc list-outside space-y-3 pl-5">
+                                <li>Led the development of a real-time fraud detection system using anomaly detection algorithms, reducing fraudulent transactions by 15%.</li>
+                                <li>Designed and implemented A/B tests for critical product features, resulting in a 10% increase in user engagement.</li>
+                                <li>Mentored junior data scientists on best practices in model development, deployment, and MLOps.</li>
+                                <li>Collaborated with engineering teams to integrate machine learning models into production systems.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Experience Item 2 -->
+                    <div class="experience-card p-10 rounded-xl shadow-lg flex flex-col md:flex-row items-start md:items-center">
+                        <div class="md:w-1/4 text-center md:text-left mb-6 md:mb-0 md:pr-8">
+                            <h3 class="text-2xl font-bold text-gray-900">Data Scientist</h3>
+                            <p class="text-lg text-gray-600">Global Analytics Corp.</p>
+                            <p class="text-md text-gray-500">Jun 2019 – Dec 2021</p>
+                        </div>
+                        <div class="md:w-3/4">
+                            <ul class="list-disc list-outside space-y-3 pl-5">
+                                <li>Developed predictive models for customer lifetime value, improving marketing campaign ROI by 20%.</li>
+                                <li>Performed extensive exploratory data analysis on large datasets to identify key trends and insights.</li>
+                                <li>Created interactive dashboards using Tableau to visualize complex data for stakeholders.</li>
+                                <li>Optimized existing SQL queries and data pipelines, reducing processing time by 30%.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 md:py-32">
+            <div class="container mx-auto px-8">
+                <h2 class="section-heading text-center mb-16">Academic Journey</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 education-cards-container">
+                    <!-- Education Item 1 -->
+                    <div class="education-card p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">M.Tech in Artificial Intelligence and Data Science</h3>
+                        <p class="text-lg text-gray-600 mb-1">VIT Bhopal University</p>
+                        <p class="text-md text-gray-500 mb-5">Graduated: May 2026</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Research focused on explainable AI (XAI) for deep learning models.</li>
+                            <li>Published 3 peer-reviewed papers in top-tier AI conferences.</li>
+                            <li>Awarded full scholarship and research assistantship.</li>
+                        </ul>
+                    </div>
+                    <!-- Education Item 2 -->
+                    <div class="education-card p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">B.Tech in Artificial Intelligence and Data Science</h3>
+                        <p class="text-lg text-gray-600 mb-1">Jawaharlal Nehru Technological University, Anantapur</p>
+                        <p class="text-md text-gray-500 mb-5">Graduated: May 2024</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Specialized in Advanced Machine Learning and Big Data Technologies.</li>
+                            <li>Capstone Project: "Predictive Analytics for Customer Churn in E-commerce"</li>
+                            <li>Relevant Coursework: Deep Learning, Natural Language Processing, Time Series Analysis.</li>
+                        </ul>
+                    </div>
+                    <!-- Education Item 3 -->
+                    <div class="education-card p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Matriculation</h3>
+                        <p class="text-lg text-gray-600 mb-1">Sri Chaitanya Junior College, Kurnool</p>
+                        <p class="text-md text-gray-500 mb-5">Graduated: May 2020</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Focused on Algorithms, Data Structures, and Software Engineering.</li>
+                            <li>Final Year Project: "Development of a Recommendation System using Collaborative Filtering"</li>
+                            <li>Awards: Institute Silver Medal for academic excellence.</li>
+                        </ul>
+                    </div>
+		    <!-- Education Item 4 -->
+                    <div class="education-card p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">School</h3>
+                        <p class="text-lg text-gray-600 mb-1">Chinmaya Vidyalaya, Adoni</p>
+                        <p class="text-md text-gray-500 mb-5">Graduated: May 2018</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Specialized in Advanced Machine Learning and Big Data Technologies.</li>
+                            <li>Capstone Project: "Predictive Analytics for Customer Churn in E-commerce"</li>
+                            <li>Relevant Coursework: Deep Learning, Natural Language Processing, Time Series Analysis.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-32">
+            <div class="container mx-auto px-8">
+                <h2 class="section-heading text-center mb-16">Featured Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 project-cards-container">
+                    <!-- Project Card 1 -->
+                    <div class="project-card rounded-xl shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Fraud+Detection+ML" alt="Fraud Detection Project" class="w-full h-56 object-cover">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Power BI Dashboard for Awesome Chocolates Sales Insights</h3>
+                            <p class="mb-5 text-base leading-relaxed">Developed and deployed a robust machine learning pipeline to identify and flag fraudulent transactions in real-time, leveraging anomaly detection techniques.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="skill-item">Python</span>
+                                <span class="skill-item">TensorFlow</span>
+                                <span class="skill-item">Kafka</span>
+                                <span class="skill-item">AWS</span>
+                            </div>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center text-lg">
+                                View Case Study <i class="fas fa-external-link-alt ml-3 text-base"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="project-card rounded-xl shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/3b82f6/ffffff?text=NLP+Sentiment+Analysis" alt="Sentiment Analysis Project" class="w-full h-56 object-cover">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Advanced Sentiment Analysis for Product Reviews</h3>
+                            <p class="mb-5 text-base leading-relaxed">Built a deep learning-based NLP model to analyze customer sentiment from millions of product reviews, providing insights for product development.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="skill-item">Python</span>
+                                <span class="skill-item">PyTorch</span>
+                                <span class="skill-item">BERT</span>
+                                <span class="skill-item">SpaCy</span>
+                            </div>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center text-lg">
+                                View Code <i class="fas fa-external-link-alt ml-3 text-base"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                    <div class="project-card rounded-xl shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Sales+Forecasting+Model" alt="Sales Forecasting Project" class="w-full h-56 object-cover">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Time-Series Sales Forecasting with Prophet</h3>
+                            <p class="mb-5 text-base leading-relaxed">Developed a highly accurate sales forecasting model using Facebook Prophet, enabling optimized inventory management and supply chain planning.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="skill-item">Python</span>
+                                <span class="skill-item">Prophet</span>
+                                <span class="skill-item">Pandas</span>
+                                <span class="skill-item">Plotly</span>
+                            </div>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold flex items-center text-lg">
+                                View Report <i class="fas fa-external-link-alt ml-3 text-base"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Add more project cards as needed -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies Section -->
+        <section id="hobbies" class="py-20 md:py-32">
+            <div class="container mx-auto px-8">
+                <h2 class="section-heading text-center mb-16">Beyond Data</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 hobby-cards-container">
+                    <div class="hobby-card p-8 rounded-xl shadow-md">
+                        <i class="fas fa-chess-knight text-6xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Chess Enthusiast</h3>
+                        <p class="text-sm">Enjoying the strategic depths of chess, a perfect blend of logic and creativity.</p>
+                    </div>
+                    <div class="hobby-card p-8 rounded-xl shadow-md">
+                        <i class="fas fa-palette text-6xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Digital Art</h3>
+                        <p class="text-sm">Exploring creativity through digital painting and graphic design in my free time.</p>
+                    </div>
+                    <div class="hobby-card p-8 rounded-xl shadow-md">
+                        <i class="fas fa-globe-americas text-6xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Travel & Culture</h3>
+                        <p class="text-sm">Passionate about exploring new places, cultures, and cuisines around the world.</p>
+                    </div>
+                    <div class="hobby-card p-8 rounded-xl shadow-md">
+                        <i class="fas fa-seedling text-6xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Gardening</h3>
+                        <p class="text-sm">Cultivating a small garden, finding peace and satisfaction in nurturing plants.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Profiles Section -->
+        <section id="social-media" class="py-20 md:py-32">
+            <div class="container mx-auto px-8">
+                <h2 class="section-heading text-center mb-16">Connect With Me</h2>
+                <div class="flex justify-center space-x-10 md:space-x-16">
+                    <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="social-icon text-7xl" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/yourusername" target="_blank" class="social-icon text-7xl" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://twitter.com/yourhandle" target="_blank" class="social-icon text-7xl" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://medium.com/@yourusername" target="_blank" class="social-icon text-7xl" aria-label="Medium">
+                        <i class="fab fa-medium"></i>
+                    </a>
+                    <a href="mailto:your.email@example.com" class="social-icon text-7xl" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32">
+            <div class="container mx-auto px-8">
+                <h2 class="section-heading text-center mb-16">Let's Connect</h2>
+                <div class="max-w-2xl mx-auto bg-gray-50 p-10 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <p class="text-center text-xl mb-8 leading-relaxed">
+                        I'm always eager to discuss new data challenges, potential collaborations, or just chat about the latest in AI. Feel free to send a message!
+                    </p>
+                    <form class="space-y-7">
+                        <div>
+                            <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Your Name</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-lg font-medium text-gray-700 mb-2">Your Email</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" placeholder="john.doe@example.com">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-lg font-medium text-gray-700 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="mt-1 block w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" placeholder="Inquiry about your work...">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-lg font-medium text-gray-700 mb-2">Your Message</label>
+                            <textarea id="message" name="message" rows="6" class="mt-1 block w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" placeholder="I'd like to discuss..."></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn-primary inline-flex items-center justify-center">Send Message <i class="fas fa-paper-plane ml-3"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-8 text-center text-gray-400">
+            <p>&copy; 2025 Mohammed Ateeq. All rights reserved.</p>
+            <p class="mt-3">Built with <i class="fas fa-heart text-red-500 mx-1"></i> and Data Science Passion</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const headerOffset = document.querySelector('header').offsetHeight; // Get header height
+                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - headerOffset - 20; // Add some extra padding
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu after clicking a link
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        // Function to set the theme
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Check for saved theme preference on load
+        window.addEventListener('load', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // If no preference saved, check system preference
+                setTheme('dark');
+            } else {
+                setTheme('light'); // Default to light mode
+            }
+
+            // Initial animation for hero section on load
+            const heroSection = document.getElementById('about');
+            if (heroSection) {
+                heroSection.querySelectorAll('.hero-text-animate, .hero-image-animate, .hero-button-animate').forEach(el => {
+                    el.classList.add('is-visible');
+                });
+            }
+        });
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            if (document.body.classList.contains('dark-mode')) {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        });
+
+        // Intersection Observer for section animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 // Trigger when 15% of the section is visible
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add 'is-visible' class to trigger animations
+                    entry.target.classList.add('is-visible');
+
+                    // Animate section heading
+                    const heading = entry.target.querySelector('.section-heading');
+                    if (heading) {
+                        heading.classList.add('is-visible'); // Trigger heading animation
+                    }
+
+                    // Animate individual cards with a stagger effect
+                    const cardContainers = entry.target.querySelectorAll('.skill-cards-container, .experience-cards-container, .education-cards-container, .project-cards-container, .hobby-cards-container');
+                    cardContainers.forEach(container => {
+                        const cards = container.querySelectorAll('.skill-card, .experience-card, .education-card, .project-card, .hobby-card');
+                        cards.forEach((card, index) => {
+                            card.style.setProperty('--stagger-delay', `${index * 0.1}s`);
+                            card.classList.add('is-visible');
+                        });
+                    });
+
+                    // Animate hero section elements specifically (if not already animated on load)
+                    if (entry.target.id === 'about') {
+                        entry.target.querySelectorAll('.hero-text-animate, .hero-image-animate, .hero-button-animate').forEach(el => {
+                            el.classList.add('is-visible');
+                        });
+                    }
+
+                } else {
+                    // Remove 'is-visible' class when leaving viewport to allow re-triggering
+                    entry.target.classList.remove('is-visible');
+
+                    const heading = entry.target.querySelector('.section-heading');
+                    if (heading) {
+                        heading.classList.remove('is-visible');
+                        // No need to reset opacity/transform here, as they are now handled by the animation itself
+                    }
+
+                    const cards = entry.target.querySelectorAll('.skill-card, .experience-card, .education-card, .project-card, .hobby-card');
+                    cards.forEach(card => {
+                        card.classList.remove('is-visible');
+                        // No need to reset opacity/transform here, as they are now handled by the animation itself
+                    });
+
+                    // Reset hero section animations when it leaves view
+                    if (entry.target.id === 'about') {
+                        entry.target.querySelectorAll('.hero-text-animate, .hero-image-animate, .hero-button-animate').forEach(el => {
+                            el.classList.remove('is-visible');
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            sectionObserver.observe(section);
+        });
+    </script>
+</body>
+</html>
